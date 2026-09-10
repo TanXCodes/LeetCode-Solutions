@@ -1,12 +1,10 @@
-import java.util.StringTokenizer;
-
 class Solution {
     public int countSegments(String s) {
         int count = 0;
-        StringTokenizer st = new StringTokenizer(s, " ");
-        while (st.hasMoreTokens()) {
-            st.nextToken(); // Advances to the next token
-            count++;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != ' ' && (i == 0 || s.charAt(i - 1) == ' ')) {
+                count++;
+            }
         }
         return count;
     }
