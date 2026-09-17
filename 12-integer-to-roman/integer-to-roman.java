@@ -1,31 +1,59 @@
 class Solution {
     public String intToRoman(int num) {
 
-        String[] thousands = {"", "M", "MM", "MMM"};
-
-        String[] hundreds = {
-            "", "C", "CC", "CCC", "CD",
-            "D", "DC", "DCC", "DCCC", "CM"
+        int[] values = {
+            1000, 900, 500, 400,
+            100, 90, 50, 40,
+            10, 9, 5, 4, 1
         };
 
-        String[] tens = {
-            "", "X", "XX", "XXX", "XL",
-            "L", "LX", "LXX", "LXXX", "XC"
+        String[] symbols = {
+            "M", "CM", "D", "CD",
+            "C", "XC", "L", "XL",
+            "X", "IX", "V", "IV", "I"
         };
 
-        String[] ones = {
-            "", "I", "II", "III", "IV",
-            "V", "VI", "VII", "VIII", "IX"
-        };
+        StringBuilder result = new StringBuilder();
 
-        int thousand = num / 1000;
-        int hundred = (num / 100) % 10;
-        int ten = (num / 10) % 10;
-        int one = num % 10;
+        for (int i = 0; i < values.length; i++) {
 
-        return thousands[thousand]
-            + hundreds[hundred]
-            + tens[ten]
-            + ones[one];
+            while (num >= values[i]) {
+                result.append(symbols[i]);
+                num -= values[i];
+            }
+        }
+
+        return result.toString();
     }
 }
+// class Solution {
+//     public String intToRoman(int num) {
+
+//         String[] thousands = {"", "M", "MM", "MMM"};
+
+//         String[] hundreds = {
+//             "", "C", "CC", "CCC", "CD",
+//             "D", "DC", "DCC", "DCCC", "CM"
+//         };
+
+//         String[] tens = {
+//             "", "X", "XX", "XXX", "XL",
+//             "L", "LX", "LXX", "LXXX", "XC"
+//         };
+
+//         String[] ones = {
+//             "", "I", "II", "III", "IV",
+//             "V", "VI", "VII", "VIII", "IX"
+//         };
+
+//         int thousand = num / 1000;
+//         int hundred = (num / 100) % 10;
+//         int ten = (num / 10) % 10;
+//         int one = num % 10;
+
+//         return thousands[thousand]
+//             + hundreds[hundred]
+//             + tens[ten]
+//             + ones[one];
+//     }
+// }
